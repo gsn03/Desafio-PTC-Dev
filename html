@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gustavo Nogueira — Página Pessoal</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="layer-solid"></div>
+  <div class="layer-glow"></div>
+
+  <!-- CARD PRINCIPAL -->
+  <div class="header">
+    <div class="profile-pic"></div>
+    <h1>Quem sou eu?</h1>
+  </div>
+
+  <!-- SEÇÃO DE ABAS -->
+  <section class="tabs">
+    <!-- inputs -->
+    <input type="radio" name="tab" id="tab1" checked>
+    <input type="radio" name="tab" id="tab2">
+    <input type="radio" name="tab" id="tab3">
+    <input type="radio" name="tab" id="tab4">
+
+    <!-- labels -->
+    <div class="labels">
+      <label for="tab1">Sobre mim</label>
+      <label for="tab2">Músicas</label>
+      <label for="tab3">Esportes</label>
+      <label for="tab4">Filmes</label>
+      <span class="slider" aria-hidden="true"></span>
+    </div>
+
+    <!-- conteúdo -->
+    <div class="content">
+
+      <!-- ====== SOBRE MIM ====== -->
+      <div class="tab-content" id="content1">
+        Me chamo Gustavo, 19 anos, sou de Recife e curso Sistemas de Informação no 4º período.<br>
+        Já morei no Canadá por um tempo — uma experiência que mudou completamente a forma como vejo o mundo.<br><br>
+        Hoje divido meu tempo entre a faculdade, projetos pessoais e momentos com minha família, amigos e namorada, com quem estou há mais de um ano.<br><br>
+        Gosto muito de esportes, música e filmes.<br>
+        Já fui atleta de handebol e cheguei a ser vice-campeão brasileiro jogando pelo Clube Português.
+
+        <div class="photo-section">
+          <h2>Canadá 🇨🇦</h2>
+          <div class="photo-scroll">
+            <a href="#img1"><img src="fotos/canada1.jpeg" alt="Canadá 1"></a>
+            <a href="#img2"><img src="fotos/canada2.jpeg" alt="Canadá 2"></a>
+            <a href="#img3"><img src="fotos/canada3.jpeg" alt="Canadá 3"></a>
+            <a href="#img4"><img src="fotos/canada4.jpeg" alt="Canadá 4"></a>
+            <a href="#img5"><img src="fotos/canada5.jpeg" alt="Canadá 5"></a>
+            <a href="#img6"><img src="fotos/canada6.jpeg" alt="Canadá 6"></a>
+          </div>
+
+          <!-- LIGHTBOX CANADÁ -->
+          <div class="lightbox" id="img1">
+            <a href="#img6" class="prev">❮</a>
+            <img src="fotos/canada1.jpeg" alt="Canadá 1 Ampliada">
+            <a href="#img2" class="next">❯</a>
+            <a href="#" class="close"></a>
+          </div>
+          <div class="lightbox" id="img2">
+            <a href="#img1" class="prev">❮</a>
+            <img src="fotos/canada2.jpeg" alt="Canadá 2 Ampliada">
+            <a href="#img3" class="next">❯</a>
+            <a href="#" class="close"></a>
+          </div>
+          <div class="lightbox" id="img3">
+            <a href="#img2" class="prev">❮</a>
+            <img src="fotos/canada3.jpeg" alt="Canadá 3 Ampliada">
+            <a href="#img4" class="next">❯</a>
+            <a href="#" class="close"></a>
+          </div>
+          <div class="lightbox" id="img4">
+            <a href="#img3" class="prev">❮</a>
+            <img src="fotos/canada4.jpeg" alt="Canadá 4 Ampliada">
+            <a href="#img5" class="next">❯</a>
+            <a href="#" class="close"></a>
+          </div>
+          <div class="lightbox" id="img5">
+            <a href="#img4" class="prev">❮</a>
+            <img src="fotos/canada5.jpeg" alt="Canadá 5 Ampliada">
+            <a href="#img6" class="next">❯</a>
+            <a href="#" class="close"></a>
+          </div>
+          <div class="lightbox" id="img6">
+            <a href="#img5" class="prev">❮</a>
+            <img src="fotos/canada6.jpeg" alt="Canadá 6 Ampliada">
+            <a href="#img1" class="next">❯</a>
+            <a href="#" class="close"></a>
+          </div>
+
+          <h2>Família</h2>
+          <div class="photo-grid">
+            <img src="fotos/familia1.jpeg" alt="Família 1">
+            <img src="fotos/familia2.jpeg" alt="Família 2">
+          </div>
+
+          <h2>Namorada</h2>
+          <div class="photo-grid">
+            <img src="fotos/cecilia3.jpeg" alt="Namorada 1">
+            <img src="fotos/cecilia2.jpeg" alt="Namorada 2">
+          </div>
+
+          <h2>Handebol</h2>
+          <div class="photo-grid">
+            <img src="fotos/handebol1.jpeg" alt="Amigos 1">
+            <img src="fotos/handebol2.jpeg" alt="Amigos 2">
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== MÚSICAS ====== -->
+      <div class="tab-content" id="content2">
+        Sou bastante eclético em relação à música — gosto de tudo um pouco, mas meus estilos favoritos são o rap e o rock, e suas vertentes.  
+        Também gosto de pagode, R&B e eletrônica, embora conheça menos artistas desses gêneros.<br><br>
+        No rap, escuto muito Kendrick Lamar, Drake, Travis Scott e (infelizmente) sou fã de Kanye West.  
+        No rock, gosto bastante de Metallica e Red Hot Chili Peppers.
+
+        <!-- ÁLBUNS FAVORITOS -->
+        <div class="album-section">
+          <h2>Álbuns Favoritos 🎧</h2>
+          <div class="album-grid">
+
+            <div class="album">
+              <a class="album-link" href="https://open.spotify.com/album/3mH6qwIy9crq0I9YQbOuDf" target="_blank" rel="noopener">
+                <img src="fotos/blonde.jpg" alt="Blonde - Frank Ocean">
+                <p>Blond — Frank Ocean</p>
+              </a>
+              <h3 class="top3-title">Meu Top 3</h3>
+              <ol class="top3">
+                <li>Nights</li>
+                <li>White Ferrari</li>
+                <li>Self Control</li>
+              </ol>
+            </div>
+
+            <div class="album">
+              <a class="album-link" href="https://open.spotify.com/album/20r762YmB5HeofjMCiPMLv" target="_blank" rel="noopener">
+                <img src="fotos/mbdtf.jpg" alt="My Beautiful Dark Twisted Fantasy - Kanye West">
+                <p>My Beautiful Dark Twisted Fantasy — Kanye West</p>
+              </a>
+              <h3 class="top3-title">Meu Top 3</h3>
+              <ol class="top3">
+                <li>Devil In A New Dress</li>
+                <li>Gorgeous</li>
+                <li>Runaway</li>
+              </ol>
+            </div>
+
+            <div class="album">
+              <a class="album-link" href="https://open.spotify.com/album/748dZDqSZy6aPXKcI9H80u" target="_blank" rel="noopener">
+                <img src="fotos/gkmc.jpg" alt="Good Kid, M.A.A.D City - Kendrick Lamar">
+                <p>Good Kid, M.A.A.D City — Kendrick Lamar</p>
+              </a>
+              <h3 class="top3-title">Meu Top 3</h3>
+              <ol class="top3">
+                <li>S.A.M.I.D.O.T.</li>
+                <li>BDKMV</li>
+                <li>m.A.A.d city</li>
+              </ol>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- MÚSICAS DO MOMENTO -->
+        <div class="songs-section">
+          <h2>Músicas do momento</h2>
+          <div class="song-grid">
+            <a class="song" href="https://open.spotify.com/track/7CC6UbCs4iGsePSzFxYxNn" target="_blank" rel="noopener">
+              <img src="fotos/donda.jpg" alt="Moon — Kanye West">
+              <div class="song-meta">
+                <span class="song-title">Moon</span>
+                <span class="song-artist">Kanye West</span>
+              </div>
+            </a>
+            <a class="song" href="https://open.spotify.com/track/3d9DChrdc6BOeFsbrZ3Is0" target="_blank" rel="noopener">
+              <img src="fotos/utb.jpg" alt="Under the Bridge — Red Hot Chili Peppers">
+              <div class="song-meta">
+                <span class="song-title">Under the Bridge</span>
+                <span class="song-artist">Red Hot Chili Peppers</span>
+              </div>
+            </a>
+            <a class="song" href="https://open.spotify.com/track/06ZX08uRQDK02emdw9mN28" target="_blank" rel="noopener">
+              <img src="fotos/Alfredo2.jpg" alt="Ensalada — Freddie Gibbs">
+              <div class="song-meta">
+                <span class="song-title">Ensalada</span>
+                <span class="song-artist">Freddie Gibbs</span>
+              </div>
+            </a>
+            <a class="song" href="https://open.spotify.com/track/6Yj7Zhxt73uvwFFvzQXdxO" target="_blank" rel="noopener">
+              <img src="fotos/fb.jpg" alt="Flights Booked — Drake">
+              <div class="song-meta">
+                <span class="song-title">Flights Booked</span>
+                <span class="song-artist">Drake</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div> <!-- fecha MÚSICAS -->
+
+      <!-- ====== ESPORTES ====== -->
+      <div class="tab-content" id="content3">
+        Sou muito fã de futebol e basquete, tanto para assistir quanto para jogar.  
+        Recentemente comecei a acompanhar muito futebol americano, tênis e F1.<br><br>
+        Torço para o Sport Club do Recife, o maior do Nordeste e legítimo campeão brasileiro de 1987🦁.  
+        Na NBA, torço pro Miami Heat🏀🔥.
+
+        <div class="sports-photos">
+          <h2>Basquete</h2>
+          <div class="photo-grid sports-grid">
+            <a href="#b1"><img src="fotos/magic1.jpeg" alt="Basquete 1"></a>
+            <a href="#b2"><img src="fotos/magic2.jpeg" alt="Basquete 2"></a>
+          </div>
+
+          <div class="lightbox" id="b1">
+            <a href="#b2" class="next">❯</a>
+            <img src="fotos/magic1.jpeg" alt="Basquete 1 Ampliada">
+            <a href="#" class="close"></a>
+          </div>
+          <div class="lightbox" id="b2">
+            <a href="#b1" class="prev">❮</a>
+            <img src="fotos/magic2.jpeg" alt="Basquete 2 Ampliada">
+            <a href="#" class="close"></a>
+          </div>
+
+          <h2>Futebol 🦁</h2>
+          <div class="photo-grid sports-grid">
+            <a href="#f1"><img src="fotos/sport1.jpeg" alt="Futebol 1"></a>
+            <a href="#f2"><img src="fotos/sport2.jpeg" alt="Futebol 2"></a>
+          </div>
+
+          <div class="lightbox" id="f1">
+            <a href="#f2" class="next">❯</a>
+            <img src="fotos/sport1.jpeg" alt="Futebol 1 Ampliada">
+            <a href="#" class="close"></a>
+          </div>
+          <div class="lightbox" id="f2">
+            <a href="#f1" class="prev">❮</a>
+            <img src="fotos/sport2.jpeg" alt="Futebol 2 Ampliada">
+            <a href="#" class="close"></a>
+          </div>
+        </div>
+      </div> <!-- fecha ESPORTES -->
+
+      <!-- ====== FILMES ====== -->
+      <div class="tab-content" id="content4">
+        Tenho preferência por filmes de ação, suspense e ficção científica.  <br><br>
+        Considero Martin Scorsese o melhor diretor da história do cinema, embora admire muito Christopher Nolan, Quentin Tarantino e Steven Spielberg.
+      <div class="film-section">
+        <h2>Filmes Favoritos 🎥</h2>
+        <div class="film-grid">
+          <div class="film">
+            <a class="film-link" href="https://www.imdb.com/pt/title/tt1853728/" target="_blank" rel="noopener">
+              <img src="fotos/django.jpeg" alt="Django Livre">
+              <p>Django Livre — Quentin Tarantino</p>
+            </a>
+          </div>
+
+          <div class="film">
+            <a class="film-link" href="https://www.imdb.com/pt/title/tt0816692/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_inter" target="_blank" rel="noopener">
+              <img src="fotos/interestelar.jpg" alt="Interestelar">
+              <p>Interestelar — Christopher Nolan</p>
+            </a>
+          </div>
+
+          <div class="film">
+            <a class="film-link" href="https://www.imdb.com/title/tt0109830/" target="_blank" rel="noopener">
+              <img src="fotos/forrest_gump.jpg" alt="Forrest Gump">
+              <p>Forrest Gump — Robert Zemeckis</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      </div> <!-- fecha FILMES -->
+
+
+    </div> <!-- fecha .content -->
+  </section>
+</body>
+</html>
