@@ -1,0 +1,563 @@
+/* ===== BASE ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh; /* permite expandir com o conteúdo */
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  font-family: system-ui, Arial, sans-serif;
+  position: relative;
+  overflow-x: hidden; /* só bloqueia rolagem lateral */
+}
+
+/* Fundo degradê fixo (parallax leve) */
+.layer-solid {
+  position: fixed;
+  inset: 0;
+  background: #2a004d;
+  opacity: 0.25;
+  mix-blend-mode: lighten;
+  z-index: 0;
+}
+
+.layer-glow {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 100%,
+    rgba(75, 0, 130, 0.5) 0%,
+    rgba(75, 0, 130, 0.25) 30%,
+    rgba(0, 0, 0, 0.85) 80%
+  );
+  mix-blend-mode: screen;
+  animation: glow-breathe 10s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes glow-breathe {
+  0%   { transform: scale(1); opacity: 0.85; }
+  50%  { transform: scale(1.05); opacity: 0.65; }
+  100% { transform: scale(1); opacity: 0.85; }
+}
+
+/* ===== CARD PRINCIPAL ===== */
+.header {
+  z-index: 1;
+  margin-top: 60px;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 40px 80px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+}
+
+.header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.header p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+/* ===== ABAS ===== */
+.tabs {
+  z-index: 1;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 1000px;
+  margin-bottom: 60px; /* dá espaço no final pra scroll */
+}
+
+/* esconder radios */
+.tabs input[type="radio"] { display: none; }
+
+/* linha de labels */
+.tabs .labels {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: min(820px, 90vw);
+  gap: 0;
+  padding-bottom: 10px;
+}
+
+/* estilo dos botões — sem borda, só texto */
+.tabs label {
+  text-align: center;
+  padding: 12px 0;
+  color: #cbb3ff;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+.tabs label:hover {
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* underline animado com fade e brilho */
+.tabs .slider {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 25%; /* 4 abas → 25% cada */
+  height: 3px;
+  background: linear-gradient(90deg, #6d28d9, #a78bfa);
+  border-radius: 999px;
+  box-shadow: 0 0 18px rgba(124, 58, 237, .8);
+  transform: translateX(0%);
+  transition: transform .4s cubic-bezier(.22,1,.36,1), opacity .4s ease;
+  animation: slider-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes slider-glow {
+  0%, 100% { box-shadow: 0 0 12px rgba(124, 58, 237, 0.5); opacity: 0.9; }
+  50%      { box-shadow: 0 0 28px rgba(167, 139, 250, 0.9); opacity: 1; }
+}
+
+/* aba ativa */
+.tabs #tab1:checked ~ .labels label[for="tab1"],
+.tabs #tab2:checked ~ .labels label[for="tab2"],
+.tabs #tab3:checked ~ .labels label[for="tab3"],
+.tabs #tab4:checked ~ .labels label[for="tab4"] {
+  color: #fff;
+  text-shadow: 0 0 18px rgba(124, 58, 237, .35);
+}
+
+/* movimento do underline */
+.tabs #tab2:checked ~ .labels .slider { transform: translateX(100%); }
+.tabs #tab3:checked ~ .labels .slider { transform: translateX(200%); }
+.tabs #tab4:checked ~ .labels .slider { transform: translateX(300%); }
+
+/* ===== CONTEÚDO ===== */
+.content {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+}
+
+/* torna o conteúdo rolável dentro das abas */
+.tab-content {
+  display: none;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+  padding: 30px 40px;
+  line-height: 1.7;
+  font-size: 1.15rem;
+  animation: fade 0.4s ease;
+  max-height: 65vh;        /* altura máxima da caixa */
+  overflow-y: auto;        /* ativa scroll interno */
+  scrollbar-width: thin;
+  scrollbar-color: #7c3aed #000;
+}
+
+.tab-content::-webkit-scrollbar {
+  width: 10px;
+}
+.tab-content::-webkit-scrollbar-thumb {
+  background: #7c3aed;
+  border-radius: 10px;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* exibir aba ativa */
+.tabs #tab1:checked ~ .content #content1,
+.tabs #tab2:checked ~ .content #content2,
+.tabs #tab3:checked ~ .content #content3,
+.tabs #tab4:checked ~ .content #content4 {
+  display: block;
+}
+
+/* ===== GALERIA DE FOTOS DENTRO DE "SOBRE MIM" ===== */
+.photo-section {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.photo-section h2 {
+  color: #c084fc;
+  font-size: 1.6rem;
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 40px;
+}
+
+.photo-grid img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 0 18px rgba(124, 58, 237, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(167, 139, 250, 0.6);
+}
+
+/* ===== ÁLBUNS FAVORITOS ===== */
+.album-section {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.album-section h2 {
+  color: #c084fc;
+  font-size: 1.6rem;
+  margin-bottom: 25px;
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+.album {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+  padding: 15px;
+  width: 210px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.album:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(167, 139, 250, 0.6);
+}
+
+.album img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.album p {
+  color: #ddd;
+  font-size: 1rem;
+  margin: 0 0 8px 0;
+  opacity: 0.9;
+  text-align: center;
+}
+
+/* “Meu Top 3” alinhado à esquerda */
+.album .top3-title {
+  margin: 10px 0 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #c084fc;
+  text-align: left;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Lista alinhada à esquerda com numeração 1-, 2-, 3- */
+.album .top3 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 85%;
+  text-align: left;
+  color: #ddd;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  counter-reset: item;
+}
+
+.album .top3 li {
+  counter-increment: item;
+  margin-bottom: 4px;
+}
+
+.album .top3 li::before {
+  content: counter(item) " - ";
+  color: #a78bfa;
+  font-weight: 600;
+}
+
+/* Ajuste individual — desce o Top 3 do Blonde */
+.album:first-child .top3-title {
+  margin-top: 38px; /* aumenta esse valor se quiser descer mais */
+}
+
+/* ===== MÚSICAS DO MOMENTO ===== */
+.songs-section {
+  margin-top: 60px; /* separa visualmente dos álbuns */
+  text-align: center;
+}
+
+.songs-section h2 {
+  color: #c084fc;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.song-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 22px;
+  justify-items: center;
+}
+
+.song {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,0.04);
+  border-radius: 16px;
+  padding: 14px;
+  text-decoration: none;
+  width: 180px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.song:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 26px rgba(167,139,250,0.45);
+}
+
+.song img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 0 14px rgba(124,58,237,0.35);
+}
+
+.song-meta {
+  width: 100%;
+  text-align: left;
+}
+
+.song-title {
+  display: block;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+
+.song-artist {
+  display: block;
+  color: #c9c9c9;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-top: 3px;
+}
+
+/* ===== GALERIA SCROLL LATERAL (CANADÁ) ===== */
+.photo-scroll {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #7c3aed #000;
+}
+
+.photo-scroll::-webkit-scrollbar {
+  height: 10px;
+}
+
+.photo-scroll::-webkit-scrollbar-thumb {
+  background: #7c3aed;
+  border-radius: 8px;
+}
+
+.photo-scroll img {
+  flex: 0 0 auto; /* impede de encolher */
+  width: 260px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 0 18px rgba(124, 58, 237, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-scroll img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(167, 139, 250, 0.6);
+}
+
+/* ===== LIGHTBOX (ABRIR FOTO AMPLIADA) ===== */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: fadeIn 0.4s ease;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 85%;
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(124, 58, 237, 0.7);
+  animation: zoomIn 0.4s ease;
+}
+
+.lightbox:target {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ===== NAVEGAÇÃO COM SETAS NO LIGHTBOX ===== */
+.lightbox .prev,
+.lightbox .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  color: #fff;
+  text-decoration: none;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.lightbox .prev:hover,
+.lightbox .next:hover {
+  color: #a78bfa;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox .prev { left: 5%; }
+.lightbox .next { right: 5%; }
+
+/* botão fechar (mantido apenas uma vez) */
+.lightbox .close {
+  position: fixed;
+  top: 40px;
+  right: 60px;
+  width: 40px;
+  height: 40px;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.lightbox .close::before {
+  content: '✕';
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.lightbox .close:hover::before {
+  color: #a78bfa;
+}
+
+/* ===== FOTO DE PERFIL (mantida a versão final) ===== */
+.profile-pic {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+
+  /* coloca sua foto de perfil */
+  background-image: url('fotos/perfil.jpeg'); /* troque o nome se for diferente */
+  background-size: cover;
+  background-position: center; /* mantém o rosto no centro */
+  background-repeat: no-repeat;
+
+  /* brilho e sombra como antes */
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== FILMES FAVORITOS ===== */
+.film-section {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.film-section h2 {
+  color: #c084fc;
+  font-size: 1.6rem;
+  margin-bottom: 25px;
+}
+
+.film-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+.film {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+  padding: 15px;
+  width: 210px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.film:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(167, 139, 250, 0.6);
+}
+
+.film img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.film p {
+  color: #ddd;
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.9;
+  text-align: center;
+}
+
+.film a {
+  text-decoration: none;
+  color: inherit;
+}
